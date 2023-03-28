@@ -39,6 +39,8 @@ app.post(
 
     let event: Stripe.Event;
 
+    console.log("Req.body :", req.body)
+    console.log("webhook Secret :", webhookSecret)
     try {
       event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
       console.log("Event :", event)
