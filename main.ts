@@ -60,7 +60,12 @@ app.post(
     } else if (event.type === 'charge.succeeded') {
       const charge = event.data.object as Stripe.Charge;
       console.log(`💵 Charge id: ${charge.id}`);
-    } else {
+    } else if (event.type == "checkout.session.completed") {
+      const completed = event.data.object;
+      console.log("completed", completed);
+    }
+
+    else {
       console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
     }
 
