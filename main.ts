@@ -69,6 +69,17 @@ app.post(
   }
 );
 
+app.get(
+  '/',
+  // Stripe requires the raw body to construct the event
+  express.raw({ type: 'application/json' }),
+  (req: express.Request, res: express.Response): void => {
+    // Return a response to acknowledge receipt of the event
+    res.json({ status: true });
+  }
+);
+
+
 const server = app.listen(process.env.PORT, () => {
   console.log(
     `Webhook endpoint available at http://localhost:${process.env.PORT
