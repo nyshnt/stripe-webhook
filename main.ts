@@ -41,8 +41,9 @@ app.post(
 
     console.log("Req.body :", req.body)
     console.log("webhook Secret :", webhookSecret)
+    const requestBody = req.body.toString()
     try {
-      event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
+      event = stripe.webhooks.constructEvent(requestBody, sig, webhookSecret);
       console.log("Event :", event)
     } catch (err) {
       // On error, log and return the error message
