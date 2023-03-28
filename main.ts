@@ -39,9 +39,11 @@ app.post(
 
     let event: Stripe.Event;
 
-    console.log("Req.body :", req.body)
+
     console.log("webhook Secret :", webhookSecret)
-    const requestBody = req.body.toString()
+    const requestBody = req.body.toString('utf-8')
+    console.log("Req.body :", requestBody)
+    console.log("Sig :", sig)
     try {
       event = stripe.webhooks.constructEvent(requestBody, sig, webhookSecret);
       console.log("Event :", event)
